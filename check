@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ps -ef | grep webapp | egrep -v 'grep|run'
