@@ -63,6 +63,7 @@ func initTraceProvider() (*trace.TracerProvider, error) {
   }
 
 	// Create a new tracer provider with the OTLP exporter
+  // ref: https://pkg.go.dev/go.opentelemetry.io/otel@v1.38.0/semconv/v1.24.0#TelemetrySDKName
   tp := trace.NewTracerProvider(
     trace.WithBatcher(exporter),
     trace.WithResource(resource.NewWithAttributes(
@@ -71,6 +72,7 @@ func initTraceProvider() (*trace.TracerProvider, error) {
       semconv.ServiceVersion("1.0"),
       semconv.ServiceNamespace("local"),
       semconv.DeploymentEnvironment("dev"),
+      semconv.TelemetrySDKName("openlit"),
     )),
   )
 	otel.SetTracerProvider(tp)
